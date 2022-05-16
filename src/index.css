@@ -1,0 +1,17 @@
+body > #root {
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.btn-social:hover {
+    opacity: .8 !important;
+}
+
+.btn-linkedin {
+    color: #08529b !important;
+}
+
+.btn-github {
+    color: #333333 !important;
+}
