@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-
-import BookCard from '../components/bookCard'
-
-import GetBooks from '../services/service'
+import { bookService } from '../services'
 
 function Home() {
     const [books, setBooks] = useState([]);
     useEffect(() => {
-        async function fetchData() {
-            await axios.get("https://62125283f43692c9c6e7c136.mockapi.io/api/v1/books")
-                .then(response => {
-                    setBooks(response.data)
-                });
+        async function getData() {
+            const response = await bookService.getAll();
+            setBooks(response)
         }
-        fetchData();
+        getData();
     }, []);
-    console.log(books)
     return (
-        <div>{books.map((item) => {
-            <p>{item.name}</p>
-        })}</div>
+        <ul>
+            {books && books.map(item =>
+                <li key='{item.id}'>{item.author}</li>
+            )}
+        </ul>
     )
-
-
 }
-
 export default Home
