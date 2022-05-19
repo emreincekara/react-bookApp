@@ -1,68 +1,91 @@
-import React, { useState } from 'react';
-import bookModel from '../models/bookModel'
-
-/*export default function GetBooks() {
-    var books = [];
-
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-    fetch("https://62125283f43692c9c6e7c136.mockapi.io/api/v1/books", requestOptions)
-        .then(response => response.json())
-        .then(result => result)
-        .then((result)=>{
-            for (let item of result) {
-                books.push(
-                    new BookModel({
-                        createdAt: item.createdAt,
-                        name: item.name,
-                        author: item.author,
-                        price: item.price,
-                        image: item.image,
-                        id: item.id
-                    })
-                )
-            }
-        })
-        .catch(error => console.log('error', error));
-    
-    return books;
-}*/
+import axios from 'axios'
 
 const baseUrl = 'https://62125283f43692c9c6e7c136.mockapi.io/api/v1/books';
 
 const getAll = async () => {
-    const result = await fetch(baseUrl)
+    const result = await axios.get(baseUrl)
         .then((response) => {
-            if (!response.ok) {
+            if (response.status !== 200) {
                 throw new Error(
                     `This is an HTTP error: The status is ${response.status}`
                 );
             }
-            return response.json();
+            return response.data;
         })
         .catch((err) => {
             console.log(err.message);
         });
+    return result;
+}
 
-    var books = [];
-    for (let item of result) {
-        books.push(
-            new bookModel({
-                createdAt: item.createdAt,
-                name: item.name,
-                author: item.author,
-                price: item.price,
-                image: item.image,
-                id: item.id
-            })
-        )
-    }
-    return books;
+const getById = async (id) => {
+    const result = await axios.get(`${baseUrl}/${id}`)
+        .then((response) => {
+            if (response.status !== 200) {
+                throw new Error(
+                    `This is an HTTP error: The status is ${response.status}`
+                );
+            }
+            return response.data;
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    return result;
+}
+
+const add = async (data) => {
+    const result = await axios.post(`${baseUrl}`, data)
+        .then((response) => {
+            if (response.status !== 201) {
+                throw new Error(
+                    `This is an HTTP error: The status is ${response.status}`
+                );
+            }
+            return response.data;
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    return result;
+}
+
+const update = async (id, data) => {
+    const result = await axios.put(`${baseUrl}/${id}`, data)
+        .then((response) => {
+            if (response.status !== 200) {
+                throw new Error(
+                    `This is an HTTP error: The status is ${response.status}`
+                );
+            }
+            return response.data;
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    return result;
+}
+
+const remove = async (id) => {
+    const result = await axios.delete(`${baseUrl}/${id}`)
+        .then((response) => {
+            if (response.status !== 200) {
+                throw new Error(
+                    `This is an HTTP error: The status is ${response.status}`
+                );
+            }
+            return response.data;
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    return result;
 }
 
 export const bookService = {
-    getAll
+    getAll,
+    getById,
+    add,
+    update,
+    remove
 };

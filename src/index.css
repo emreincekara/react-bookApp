@@ -15,3 +15,18 @@ body > #root {
 .btn-github {
     color: #333333 !important;
 }
+
+/*Book Card Styles*/
+.book-card .book-image {
+    overflow: hidden;
+}
+
+    .book-card .book-image img {
+        -webkit-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+
+    .book-card .book-image:hover img {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }

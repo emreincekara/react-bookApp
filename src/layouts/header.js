@@ -9,12 +9,17 @@ const Header = () => {
                 <Container>
                     <LinkContainer to='/'>
                         <Navbar.Brand>
-                            <FontAwesomeIcon icon="fa-solid fa-book-open-reader" fixedWidth /> Rea Book
+                            <FontAwesomeIcon icon="fa-solid fa-book-open-reader" fixedWidth /> Rea BookApp
                         </Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls='basic-navbar-nav' />
                     <Navbar.Collapse id='basic-navbar-nav'>
                         <Nav className='ms-auto'>
+                        <LinkContainer to='/'>
+                                <Nav.Link>
+                                    <FontAwesomeIcon icon="fa-solid fa-home" fixedWidth size="lg" /> Anasayfa
+                                </Nav.Link>
+                            </LinkContainer>
                             <LinkContainer to='/add'>
                                 <Nav.Link>
                                     <FontAwesomeIcon icon="fa-solid fa-circle-plus" fixedWidth size="lg" /> Yeni Kitap

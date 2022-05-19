@@ -5,8 +5,9 @@ import Header from './layouts/header'
 import Footer from './layouts/footer'
 
 import Home from './pages/home'
-import AddBook from './pages/book/addBook'
-import EditBook from './pages/book/editBook'
+import DetailBook from './pages/book/detail'
+import AddBook from './pages/book/add'
+import UpdateBook from './pages/book/update'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -23,8 +24,9 @@ function App() {
         <Container>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path="/detail/:id" element={<DetailBook />} />
             <Route path='/add' element={<AddBook />} />
-            <Route path='/edit/:id' element={<EditBook />} />
+            <Route path='/update/:id' element={<UpdateBook />} />
           </Routes>
         </Container>
       </main>
